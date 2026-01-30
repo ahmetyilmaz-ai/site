@@ -122,6 +122,8 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 95%;
+    /* Wider container for navbar to push logo left */
 }
 
 .logo {
@@ -169,8 +171,50 @@ ul {
     transition: var(--transition);
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--nav-bg);
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    flex-direction: column;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+.dropdown-content a {
+    color: #fff;
+    /* White text for dropdown items because nav-bg is dark/transparent */
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--primary);
+    color: var(--dark-bg);
+}
+
+/* Nav Link Hover effect update for dropdown parent */
+.nav-links .dropdown>a:hover::after,
+.nav-links .dropdown>a.active::after {
     width: 100%;
 }
 
@@ -304,11 +348,40 @@ ul {
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* Updated to a specific Grill/Kebab image */
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-    background-size: cover;
-    background-position: center;
-    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+    /* Removed background image to allow video */
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    /* Ensure content is above video */
+
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, var(--dark-bg));
+    z-index: 1;
+    /* Above video, below content (if content overlaps this area) */
+    pointer-events: none;
+    /* Let clicks pass through */
 }
 
 .hero-content h1 {
