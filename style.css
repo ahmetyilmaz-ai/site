@@ -156,7 +156,8 @@ ul {
 
 .nav-links a {
     font-weight: 500;
-    color: #333333;
+    color: #666;
+    /* Grayer text for normal state */
     /* Dark text */
     position: relative;
     font-size: 1.1rem;
@@ -171,6 +172,11 @@ ul {
     height: 2px;
     background-color: #d35400;
     transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: #000;
+    /* Distinct black on hover */
 }
 
 /* Dropdown Styles */
@@ -640,9 +646,14 @@ footer {
 }
 
 .btn-nav:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+    background-color: #e0a800;
+    /* Subtle darkening of primary color */
+    color: #fff !important;
+    /* Make text white for better contrast on darker yellow */
+    transform: translateY(-1px);
+    /* More subtle lift */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Reduced shadow */
 }
 
 .btn-nav::after {
