@@ -585,6 +585,34 @@ footer {
     gap: 50px;
 }
 
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-image {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .dropdown {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown-content {
+        position: static;
+        display: none;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+    }
+
+    .dropdown.active .dropdown-content {
+        display: flex;
+    }
+}
+
 .about-text {
     flex: 1;
 }

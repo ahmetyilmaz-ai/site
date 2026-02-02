@@ -6,10 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.classList.toggle('active');
     });
 
-    // Close mobile menu when a link is clicked
+    // Mobile menu interaction
     document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
+        link.addEventListener('click', (e) => {
+            // Check if this is a dropdown toggle
+            if (link.parentElement.classList.contains('dropdown')) {
+                e.preventDefault(); // Prevent default link behavior
+                link.parentElement.classList.toggle('active'); // Toggle dropdown visibility
+            } else {
+                // For regular links, close the menu
+                navLinks.classList.remove('active');
+                // Also close any open dropdowns when closing menu
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            }
         });
     });
 
