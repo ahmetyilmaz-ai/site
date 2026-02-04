@@ -563,13 +563,20 @@ ul {
 }
 
 .menu-item:hover {
-    background-color: #252525;
+    background-color: transparent;
+    /* Changed from #252525 */
+}
+
+.menu-item:hover .item-info h4 {
+    color: var(--primary);
+    /* Change text color to orange/primary on hover */
 }
 
 .item-info h4 {
     margin-bottom: 5px;
     font-size: 1.2rem;
     color: var(--text-main);
+    transition: var(--transition);
 }
 
 .item-info p {
