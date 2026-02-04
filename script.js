@@ -48,19 +48,66 @@ document.addEventListener('DOMContentLoaded', () => {
             // If no internal referrer, let the default href="index.html" work
         });
     });
-    // Search Functionality
+    // Search Autocomplete
+    const menuItems = [
+        "Adana Dürüm", "Urfa Dürüm", "Ciğer Şiş Dürüm", "Tavuk Şiş Dürüm",
+        "Adana Porsiyon", "Tavuk Şiş Porsiyon", "Ciğer Porsiyon",
+        "Ayran (Yayık)", "Kola", "Fanta", "Sprite", "Şalgam Suyu", "Su",
+        "Haydari", "Acılı Ezme", "Patlıcan Ezme", "Humus"
+    ];
+
     const searchInputs = document.querySelectorAll('.nav-search');
 
     searchInputs.forEach(input => {
+        // Create suggestions container
+        const suggestionsBox = document.createElement('div');
+        suggestionsBox.className = 'search-suggestions';
+        // Append to the parent (.nav-extras) to position correctly
+        if (input.parentElement.classList.contains('nav-extras')) {
+            input.parentElement.appendChild(suggestionsBox);
+        }
+
+        input.addEventListener('input', (e) => {
+            const query = e.target.value.trim().toLowerCase();
+            suggestionsBox.innerHTML = ''; // Clear previous suggestions
+
+            if (query.length > 0) {
+                const filteredItems = menuItems.filter(item => item.toLowerCase().includes(query));
+
+                if (filteredItems.length > 0) {
+                    filteredItems.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'suggestion-item';
+                        div.textContent = item;
+                        div.addEventListener('click', () => {
+                            // Redirect to menu with specific item search
+                            window.location.href = `menu.html?search=${encodeURIComponent(item)}`;
+                        });
+                        suggestionsBox.appendChild(div);
+                    });
+                    suggestionsBox.style.display = 'block';
+                } else {
+                    suggestionsBox.style.display = 'none';
+                }
+            } else {
+                suggestionsBox.style.display = 'none';
+            }
+        });
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!input.contains(e.target) && !suggestionsBox.contains(e.target)) {
+                suggestionsBox.style.display = 'none';
+            }
+        });
+
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 const query = input.value.trim().toLowerCase();
                 if (query) {
-                    // Redirect to menu.html with search parameter
-                    // If we are already on menu.html, just reload/run search (or better, just update URL and run search function)
-                    // For simplicity, we'll assign location.
                     window.location.href = `menu.html?search=${encodeURIComponent(query)}`;
+                    suggestionsBox.style.display = 'none';
                 }
             }
         });
@@ -80,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const title = item.querySelector('h4, h3')?.textContent.toLowerCase() || '';
                 const desc = item.querySelector('p')?.textContent.toLowerCase() || '';
 
+                // Relaxed matching for "Ayran", "Tavuk" etc.
                 if (title.includes(term) || desc.includes(term)) {
                     if (!found) {
                         // Scroll to first match
