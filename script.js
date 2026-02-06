@@ -147,4 +147,49 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+
+
+    // Folder-Based Gallery Logic
+    const homepageGallery = document.getElementById('homepage-gallery');
+    const fullGallery = document.getElementById('full-gallery');
+    const maxItemsToCheck = 20; // Check for 1.jpg up to 20.jpg
+
+    function loadGalleryImages(container, folderPath) {
+        if (!container) return;
+        container.innerHTML = ''; // Clear existing content
+
+        for (let i = 1; i <= maxItemsToCheck; i++) {
+            const imgPath = `${folderPath}${i}.jpg`;
+
+            // Create a temp image to check if file exists
+            const tempImg = new Image();
+            tempImg.src = imgPath;
+
+            tempImg.onload = function () {
+                // Image exists, create DOM element
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+
+                const img = document.createElement('img');
+                img.src = imgPath;
+                img.alt = `Galeri Görseli ${i}`;
+
+                div.appendChild(img);
+                container.appendChild(div);
+            };
+
+            tempImg.onerror = function () {
+                // Image doesn't exist, do nothing
+            };
+        }
+    }
+
+    if (homepageGallery) {
+        loadGalleryImages(homepageGallery, 'images/galeri_anasayfa/');
+    }
+
+    if (fullGallery) {
+        loadGalleryImages(fullGallery, 'images/galeri_tam/');
+    }
 });

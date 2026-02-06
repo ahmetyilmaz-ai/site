@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - RE-MO DÜRÜM</title>
+    <link rel="stylesheet" href="style.css?v=6">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="RE-MO DÜRÜM" class="navbar-logo"
+                    onerror="if(this.src.endsWith('png'))this.src='logo.jpg';else if(this.src.endsWith('jpg'))this.src='logo.jpeg';">
+                <span class="logo-text">RE-MO DÜRÜM</span>
+            </a>
+            <div class="nav-extras">
+                <input type="text" placeholder="Ara..." class="nav-search">
+                <div class="nav-phone">
+                    <span>Sipariş Hattı:</span>
+                    <a href="tel:02243670016">0224 367 00 16</a>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span>&#9776;</span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)">Menü &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="menu.html">Porsiyonlar</a>
+                        <a href="menu.html">Dürümler</a>
+                        <a href="menu.html">İçecekler</a>
+                        <a href="menu.html">Mezeler</a>
+                    </div>
+                </li>
+                <li><a href="galeri.html" class="active">Galeri</a></li>
+                <li><a href="index.html#contact">İletişim</a></li>
+                <li><a href="index.html#about" class="btn-nav">Hakkımızda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Section for Gallery -->
+    <header class="menu-header">
+        <div class="container">
+            <h1 style="color: white;">Galerimiz</h1>
+            <p style="color: #ccc;">Lezzet dolu anlarımıza göz atın.</p>
+        </div>
+    </header>
+
+    <!-- Campaigns & Gallery Section -->
+    <section class="campaigns">
+        <div class="container">
+            <div class="gallery-grid" id="full-gallery">
+                <!-- Gallery items will be populated by script.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 RE-MO DÜRÜM. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
