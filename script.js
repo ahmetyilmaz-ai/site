@@ -186,7 +186,102 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (homepageGallery) {
-        loadGalleryImages(homepageGallery, 'images/galeri_anasayfa/');
+        // loadGalleryImages(homepageGallery, 'images/galeri_anasayfa/');
+        setupHomepageCarousel(homepageGallery, 'images/galeri_anasayfa/');
+    }
+
+    function setupHomepageCarousel(container, folderPath) {
+        container.innerHTML = '';
+
+        // Structure
+        const trackContainer = document.createElement('div');
+        trackContainer.className = 'carousel-track-container';
+
+        const track = document.createElement('div');
+        track.className = 'carousel-track';
+
+        trackContainer.appendChild(track);
+        container.appendChild(trackContainer);
+
+        // Arrows
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'carousel-btn prev';
+        prevBtn.innerHTML = '&#10094;';
+
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'carousel-btn next';
+        nextBtn.innerHTML = '&#10095;';
+
+        container.appendChild(prevBtn);
+        container.appendChild(nextBtn);
+
+        // State
+        let currentIndex = 0;
+        let images = [];
+        const itemsToShow = window.innerWidth <= 768 ? 1 : 2;
+
+        // Load Images
+        let loadedCount = 0;
+        for (let i = 1; i <= 20; i++) {
+            const imgPath = `${folderPath}${i}.jpg`;
+            const tempImg = new Image();
+            tempImg.src = imgPath;
+
+            tempImg.onload = function () {
+                images.push({ src: imgPath, index: i });
+                images.sort((a, b) => a.index - b.index); // Ensure order
+                renderCarousel();
+            };
+
+            tempImg.onerror = function () {
+                // Stop checking after a few failures if needed, but simple loop is fine
+            };
+        }
+
+        function renderCarousel() {
+            track.innerHTML = '';
+            images.forEach(imgData => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const img = document.createElement('img');
+                img.src = imgData.src;
+                slide.alt = `Galeri Görseli ${imgData.index}`;
+                slide.appendChild(img);
+                track.appendChild(slide);
+            });
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const width = 100 / (window.innerWidth <= 768 ? 1 : 2);
+            track.style.transform = `translateX(-${currentIndex * width}%)`;
+        }
+
+        // Arrow Listeners
+        nextBtn.addEventListener('click', () => {
+            const itemsVisible = window.innerWidth <= 768 ? 1 : 2;
+            if (currentIndex < images.length - itemsVisible) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loop back to start
+            }
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            const itemsVisible = window.innerWidth <= 768 ? 1 : 2;
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = images.length - itemsVisible; // Loop to end
+            }
+            updateCarousel();
+        });
+
+        // Resize Listener
+        window.addEventListener('resize', () => {
+            updateCarousel();
+        });
     }
 
     if (fullGallery) {
