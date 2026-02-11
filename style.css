@@ -193,7 +193,7 @@ ul {
 .logo-text {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--primary);
     margin-left: 0;
     /* Removed negative margin */
     font-family: 'Playfair Display', serif;
