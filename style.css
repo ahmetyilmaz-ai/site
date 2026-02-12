@@ -914,6 +914,75 @@ footer {
     .carousel-slide img {
         height: 250px;
     }
+
+    /* Favorites Grid on Mobile */
+    #favorites-carousel {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    #favorites-carousel .card {
+        margin-bottom: 0;
+        /* Remove potential margins */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        /* Lighter shadow */
+    }
+
+    #favorites-carousel .card-img-container {
+        height: 120px;
+        /* Even smaller images */
+    }
+
+    #favorites-carousel .card-content {
+        padding: 10px;
+    }
+
+    #favorites-carousel .card-title {
+        font-size: 1rem;
+        /* Smaller title */
+        margin-bottom: 5px;
+    }
+
+    #favorites-carousel .card-desc {
+        font-size: 0.8rem;
+        /* Smaller desc */
+        -webkit-line-clamp: 2;
+        /* Limit lines */
+        margin-bottom: 10px;
+    }
+
+    #favorites-carousel .btn {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+
+    /* Hide carousel controls only for favorites on mobile if they exist (handled by script mostly) */
+    #favorites-carousel .carousel-btn {
+        display: none !important;
+    }
+
+    /* Reset carousel container styles if script runs */
+    #favorites-carousel .carousel-track-container {
+        overflow: visible;
+    }
+
+    #favorites-carousel .carousel-track {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        transform: none !important;
+        /* Disable slide effect */
+        width: 100%;
+    }
+
+    #favorites-carousel .carousel-slide {
+        width: auto !important;
+        /* Reset width set by JS */
+        padding: 0;
+        /* Reset padding set by JS */
+    }
 }
 
 .btn-nav:hover {

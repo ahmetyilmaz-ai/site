@@ -186,9 +186,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Generic Carousel Logic
-    function createCarousel({ containerId, items, itemsToShow, itemsToShowMobile, partialVisible, isDynamic, folderPath }) {
+    function createCarousel({ containerId, items, itemsToShow, itemsToShowMobile, partialVisible, disableOnMobile, isDynamic, folderPath }) {
         const container = document.getElementById(containerId);
         if (!container) return;
+
+        // Mobile Check for Disable
+        if (disableOnMobile && window.innerWidth <= 768) {
+            // Do not initialize carousel, let CSS grid handle it
+            // If dynamic, we might need to populate it though?
+            // Favorites is static (!isDynamic), so we just exit and let existing DOM be grid.
+            if (!isDynamic) return;
+
+            // If dynamic (gallery), we still need to load images but maybe as grid?
+            // For now, this feature is for Favorites which is static.
+        }
 
         // Configuration
         const config = {
@@ -276,6 +287,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         item.classList.add('carousel-slide');
                     }
                     track.appendChild(item);
+
+                    // Reset or set styles if needed
+                    item.style.width = ''; // Let updateCarousel handle it
                 });
             }
             updateCarousel();
@@ -363,7 +377,8 @@ document.addEventListener('DOMContentLoaded', () => {
         containerId: 'favorites-carousel',
         isDynamic: false,
         itemsToShow: 3,
-        partialVisible: false
+        partialVisible: false,
+        disableOnMobile: true // Custom option to kill carousel on mobile
     });
 
 
