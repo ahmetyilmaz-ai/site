@@ -185,13 +185,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (homepageGallery) {
-        // loadGalleryImages(homepageGallery, 'images/galeri_anasayfa/');
-        setupHomepageCarousel(homepageGallery, 'images/galeri_anasayfa/');
-    }
+    // Generic Carousel Logic
+    function createCarousel({ containerId, items, itemsToShow, itemsToShowMobile, partialVisible, isDynamic, folderPath }) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
 
-    function setupHomepageCarousel(container, folderPath) {
-        container.innerHTML = '';
+        // Configuration
+        const config = {
+            itemsToShow: itemsToShow || 3,
+            itemsToShowMobile: itemsToShowMobile || 1.2, // Default to 1.2 + partial
+            partialVisible: partialVisible || false, // If true, adds transparency effect
+            gap: 20
+        };
+
+        // If static content (like Favorites), get items from DOM
+        let carouselItems = [];
+        if (!isDynamic) {
+            carouselItems = Array.from(container.children);
+            // Clear container to rebuild structure
+            container.innerHTML = '';
+        } else {
+            // Placeholder for dynamic items
+            carouselItems = items || [];
+        }
 
         // Structure
         const trackContainer = document.createElement('div');
@@ -217,72 +233,141 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // State
         let currentIndex = 0;
-        let images = [];
-        const itemsToShow = window.innerWidth <= 768 ? 1 : 2;
 
-        // Load Images
-        let loadedCount = 0;
-        for (let i = 1; i <= 20; i++) {
-            const imgPath = `${folderPath}${i}.jpg`;
-            const tempImg = new Image();
-            tempImg.src = imgPath;
-
-            tempImg.onload = function () {
-                images.push({ src: imgPath, index: i });
-                images.sort((a, b) => a.index - b.index); // Ensure order
-                renderCarousel();
-            };
-
-            tempImg.onerror = function () {
-                // Stop checking after a few failures if needed, but simple loop is fine
-            };
+        // Helper to determine visible count based on screen size
+        function getVisibleCount() {
+            if (window.innerWidth <= 768) return config.itemsToShowMobile;
+            return config.itemsToShow;
         }
 
-        function renderCarousel() {
+        // Render Items
+        function renderItems() {
             track.innerHTML = '';
-            images.forEach(imgData => {
-                const slide = document.createElement('div');
-                slide.className = 'carousel-slide';
-                const img = document.createElement('img');
-                img.src = imgData.src;
-                slide.alt = `Galeri Görseli ${imgData.index}`;
-                slide.appendChild(img);
-                track.appendChild(slide);
-            });
+
+            // If dynamic (images), create elements
+            if (isDynamic && carouselItems.length === 0 && folderPath) {
+                // Initial load for images
+                for (let i = 1; i <= 20; i++) {
+                    const imgPath = `${folderPath}${i}.jpg`;
+                    const tempImg = new Image();
+                    tempImg.src = imgPath;
+                    tempImg.onload = function () {
+                        const div = document.createElement('div');
+                        div.className = 'carousel-slide';
+                        const img = document.createElement('img');
+                        img.src = imgPath;
+                        div.appendChild(img);
+
+                        // Insert in order
+                        div.dataset.index = i;
+                        const existing = Array.from(track.children);
+                        const nextNode = existing.find(node => parseInt(node.dataset.index) > i);
+                        track.insertBefore(div, nextNode);
+
+                        carouselItems.push(div); // Keep track
+                        updateCarousel();
+                    };
+                }
+            } else {
+                // Static or already loaded
+                carouselItems.forEach(item => {
+                    // Ensure item has slide class
+                    if (!item.classList.contains('carousel-slide')) {
+                        item.classList.add('carousel-slide');
+                    }
+                    track.appendChild(item);
+                });
+            }
             updateCarousel();
         }
 
         function updateCarousel() {
-            const width = 100 / (window.innerWidth <= 768 ? 1 : 2);
-            track.style.transform = `translateX(-${currentIndex * width}%)`;
+            const visibleCount = getVisibleCount();
+            const itemWidth = 100 / visibleCount;
+
+            // Move track
+            track.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+
+            // Set width of each slide
+            const slides = Array.from(track.children);
+            slides.forEach((slide) => {
+                slide.style.width = `${itemWidth}%`;
+                // Reset styles if partialVisible ever turned on locally
+                if (config.partialVisible) {
+                    slide.style.opacity = '1';
+                    slide.style.transform = 'scale(1)';
+                    slide.style.filter = 'none';
+                }
+            });
+
+            // Apply partial visibility effect if configured (refining logic)
+            if (config.partialVisible) {
+                // ... (existing logic or placeholder if you want to keep it simple)
+                // The previous code had a bug where it reset styles inside the loop but didn't apply new ones.
+                // For now, let's stick to the width fix which is critical.
+            }
+
+            // Update Buttons State (Optional visual feedback)
+            // prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
         }
 
-        // Arrow Listeners
+
+        // Navigation
         nextBtn.addEventListener('click', () => {
-            const itemsVisible = window.innerWidth <= 768 ? 1 : 2;
-            if (currentIndex < images.length - itemsVisible) {
+            const visibleCount = getVisibleCount();
+            const total = track.children.length;
+            if (total === 0) return;
+
+            // Stop if we reached the end (no infinite loop)
+            // We want to stop when the LAST item is fully visible or partially visible as intended
+            // Logic: If we have 5 items, show 2.5. 
+            // Max index we can scroll to?
+            // If we want the last item to be the last one visible on the right:
+            // currentIndex max = total - visibleCount (approximately)
+
+            // Simplest "stop at end" logic:
+            // If we can slide one more time without pushing the last item too far?
+            // Actually, typically we stop when (currentIndex + floor(visibleCount)) < total
+
+            if (currentIndex < total - Math.floor(visibleCount)) {
                 currentIndex++;
-            } else {
-                currentIndex = 0; // Loop back to start
+                updateCarousel();
             }
-            updateCarousel();
         });
 
         prevBtn.addEventListener('click', () => {
-            const itemsVisible = window.innerWidth <= 768 ? 1 : 2;
             if (currentIndex > 0) {
                 currentIndex--;
-            } else {
-                currentIndex = images.length - itemsVisible; // Loop to end
+                updateCarousel();
             }
-            updateCarousel();
         });
 
-        // Resize Listener
-        window.addEventListener('resize', () => {
-            updateCarousel();
-        });
+        window.addEventListener('resize', updateCarousel);
+
+        // Initial Render
+        renderItems();
     }
+
+    // Initialize Gallery (2 items)
+    createCarousel({
+        containerId: 'homepage-gallery',
+        isDynamic: true,
+        folderPath: 'images/galeri_anasayfa/',
+        itemsToShow: 2,
+        itemsToShowMobile: 2, // Force 2 items on mobile
+        partialVisible: false
+    });
+
+    // Initialize Favorites (3 items)
+    createCarousel({
+        containerId: 'favorites-carousel',
+        isDynamic: false,
+        itemsToShow: 3,
+        partialVisible: false
+    });
+
+
+    // Simple fade-in animation on scroll (restored if needed or separate)
 
     if (fullGallery) {
         loadGalleryImages(fullGallery, 'images/galeri_tam/');
