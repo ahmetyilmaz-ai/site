@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isDynamic: true,
         folderPath: 'images/galeri_anasayfa/',
         itemsToShow: 2,
-        itemsToShowMobile: 2, // Force 2 items on mobile
+        itemsToShowMobile: 1, // Show 1 item on mobile
         partialVisible: false
     });
 

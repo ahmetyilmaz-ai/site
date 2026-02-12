@@ -911,6 +911,11 @@ footer {
         padding: 20px 30px;
     }
 
+    #homepage-gallery .carousel-slide img {
+        height: 300px;
+        /* Reduced specific height for mobile */
+    }
+
     .carousel-slide img {
         height: 250px;
     }
