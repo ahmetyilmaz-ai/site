@@ -372,6 +372,26 @@ document.addEventListener('DOMContentLoaded', () => {
         partialVisible: false
     });
 
+    // Force Video Autoplay (Mobile/Low Power Mode Fix)
+    const heroVideo = document.querySelector('.hero-video');
+    if (heroVideo) {
+        // Ensure muted is set (required for autoplay)
+        heroVideo.muted = true;
+
+        const playPromise = heroVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Autoplay started!
+                console.log("Video playing");
+            }).catch(error => {
+                // Auto-play was prevented
+                console.log("Autoplay prevented:", error);
+                // We can show a "Play" button here if we wanted, or just stick with poster
+                // heroVideo.controls = true; // Uncomment to show controls if autoplay fails
+            });
+        }
+    }
+
     // Initialize Favorites (3 items)
     createCarousel({
         containerId: 'favorites-carousel',
