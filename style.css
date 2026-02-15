@@ -593,6 +593,14 @@ ul {
     text-align: right;
 }
 
+/* Menu List Styles */
+.menu-list {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
 /* Contact Section */
 .contact {
     padding: 80px 0;
@@ -706,6 +714,14 @@ footer {
     .btn {
         padding: 6px 12px;
         font-size: 0.75rem;
+    }
+
+    .menu-list {
+        padding: 10px;
+    }
+
+    .menu-item {
+        padding: 10px;
     }
 }
 
