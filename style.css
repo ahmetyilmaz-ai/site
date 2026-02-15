@@ -660,8 +660,8 @@ footer {
     /* Mobile Grid Updates */
     .grid,
     .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 
     .card,
@@ -671,22 +671,27 @@ footer {
 
     .card-img-container,
     .gallery-item {
-        height: 140px;
+        height: 120px;
         /* Smaller images */
     }
 
     .card-content {
-        padding: 15px;
+        padding: 10px;
+        /* Reduced padding */
     }
 
-    .card-title {
-        font-size: 1.1rem;
+    .card-title,
+    .item-info h4 {
+        font-size: 0.95rem;
+        /* Smaller title */
         margin-bottom: 5px;
     }
 
-    .card-desc {
-        font-size: 0.85rem;
-        margin-bottom: 10px;
+    .card-desc,
+    .item-info p {
+        font-size: 0.8rem;
+        /* Smaller description */
+        margin-bottom: 5px;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         line-clamp: 2;
@@ -694,9 +699,13 @@ footer {
         overflow: hidden;
     }
 
+    .item-price {
+        font-size: 1rem;
+    }
+
     .btn {
-        padding: 8px 16px;
-        font-size: 0.8rem;
+        padding: 6px 12px;
+        font-size: 0.75rem;
     }
 }
 
