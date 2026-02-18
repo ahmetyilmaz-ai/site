@@ -875,6 +875,7 @@ footer {
     width: 100%;
     /* Standardize height and fill width */
     object-fit: cover;
+    border-radius: 15px;
 }
 
 #homepage-gallery .carousel-slide {

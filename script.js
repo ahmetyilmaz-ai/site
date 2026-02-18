@@ -159,29 +159,40 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!container) return;
         container.innerHTML = ''; // Clear existing content
 
+        const extensions = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
+
         for (let i = 1; i <= maxItemsToCheck; i++) {
-            const imgPath = `${folderPath}${i}.jpg`;
+            // Try to find valid image for this index
+            let tryNextExtension = (extIndex) => {
+                if (extIndex >= extensions.length) return; // No valid image found for this number
 
-            // Create a temp image to check if file exists
-            const tempImg = new Image();
-            tempImg.src = imgPath;
+                const ext = extensions[extIndex];
+                const imgPath = `${folderPath}${i}.${ext}`;
+                const tempImg = new Image();
 
-            tempImg.onload = function () {
-                // Image exists, create DOM element
-                const div = document.createElement('div');
-                div.className = 'gallery-item';
+                tempImg.onload = function () {
+                    // Image exists, create DOM element
+                    const div = document.createElement('div');
+                    div.className = 'gallery-item';
 
-                const img = document.createElement('img');
-                img.src = imgPath;
-                img.alt = `Galeri Görseli ${i}`;
+                    const img = document.createElement('img');
+                    img.src = imgPath;
+                    img.alt = `Galeri Görseli ${i}`;
 
-                div.appendChild(img);
-                container.appendChild(div);
+                    div.appendChild(img);
+                    container.appendChild(div);
+                };
+
+                tempImg.onerror = function () {
+                    // Try next extension
+                    tryNextExtension(extIndex + 1);
+                };
+
+                tempImg.src = imgPath;
             };
 
-            tempImg.onerror = function () {
-                // Image doesn't exist, do nothing
-            };
+            // Start checking with first extension
+            tryNextExtension(0);
         }
     }
 
@@ -258,26 +269,46 @@ document.addEventListener('DOMContentLoaded', () => {
             // If dynamic (images), create elements
             if (isDynamic && carouselItems.length === 0 && folderPath) {
                 // Initial load for images
+                // Initial load for images
+                const extensions = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
+
                 for (let i = 1; i <= 20; i++) {
-                    const imgPath = `${folderPath}${i}.jpg`;
-                    const tempImg = new Image();
-                    tempImg.src = imgPath;
-                    tempImg.onload = function () {
-                        const div = document.createElement('div');
-                        div.className = 'carousel-slide';
-                        const img = document.createElement('img');
-                        img.src = imgPath;
-                        div.appendChild(img);
+                    // Try to find valid image for this index
+                    let tryNextExtension = (extIndex) => {
+                        if (extIndex >= extensions.length) return; // No valid image found for this number
 
-                        // Insert in order
-                        div.dataset.index = i;
-                        const existing = Array.from(track.children);
-                        const nextNode = existing.find(node => parseInt(node.dataset.index) > i);
-                        track.insertBefore(div, nextNode);
+                        const ext = extensions[extIndex];
+                        const imgPath = `${folderPath}${i}.${ext}`;
+                        const tempImg = new Image();
 
-                        carouselItems.push(div); // Keep track
-                        updateCarousel();
+                        tempImg.onload = function () {
+                            // Image exists
+                            const div = document.createElement('div');
+                            div.className = 'carousel-slide';
+                            const img = document.createElement('img');
+                            img.src = imgPath;
+                            div.appendChild(img);
+
+                            // Insert in order
+                            div.dataset.index = i;
+                            const existing = Array.from(track.children);
+                            const nextNode = existing.find(node => parseInt(node.dataset.index) > i);
+                            track.insertBefore(div, nextNode);
+
+                            carouselItems.push(div); // Keep track
+                            updateCarousel();
+                        };
+
+                        tempImg.onerror = function () {
+                            // Try next extension
+                            tryNextExtension(extIndex + 1);
+                        };
+
+                        tempImg.src = imgPath;
                     };
+
+                    // Start checking with first extension
+                    tryNextExtension(0);
                 }
             } else {
                 // Static or already loaded
@@ -367,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
         containerId: 'homepage-gallery',
         isDynamic: true,
         folderPath: 'images/galeri_anasayfa/',
-        itemsToShow: 2,
+        itemsToShow: 3,
         itemsToShowMobile: 1, // Show 1 item on mobile
         partialVisible: false
     });
