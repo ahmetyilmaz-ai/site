@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Search Autocomplete
     const menuItems = [
         "Adana Dürüm", "Urfa Dürüm", "Ciğer Dürüm", "Tavuk Şiş Dürüm",
-        "Adana Porsiyon", "Tavuk Şiş Porsiyon", "Kuzu Ciğer Şiş Porsiyon",
+        "Kuzu Şiş Porsiyon", "Tavuk Şiş Porsiyon", "Kuzu Ciğer Şiş Porsiyon",
         "Ayran (Yayık)", "Kola", "Fanta", "Sprite", "Şalgam Suyu", "Su",
         "Haydari", "Acılı Ezme", "Patlıcan Ezme", "Humus"
     ];
