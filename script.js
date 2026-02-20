@@ -217,7 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
             itemsToShow: itemsToShow || 3,
             itemsToShowMobile: itemsToShowMobile || 1.2, // Default to 1.2 + partial
             partialVisible: partialVisible || false, // If true, adds transparency effect
-            gap: 20
+            gap: 20,
+            autoPlaySpeed: arguments[0].autoPlaySpeed || 0
         };
 
         // If static content (like Favorites), get items from DOM
@@ -255,6 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // State
         let currentIndex = 0;
+        let autoPlayInterval;
 
         // Helper to determine visible count based on screen size
         function getVisibleCount() {
@@ -358,39 +360,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // Navigation
-        nextBtn.addEventListener('click', () => {
+        function moveNext() {
             const visibleCount = getVisibleCount();
             const total = track.children.length;
             if (total === 0) return;
 
-            // Stop if we reached the end (no infinite loop)
-            // We want to stop when the LAST item is fully visible or partially visible as intended
-            // Logic: If we have 5 items, show 2.5. 
-            // Max index we can scroll to?
-            // If we want the last item to be the last one visible on the right:
-            // currentIndex max = total - visibleCount (approximately)
-
-            // Simplest "stop at end" logic:
-            // If we can slide one more time without pushing the last item too far?
-            // Actually, typically we stop when (currentIndex + floor(visibleCount)) < total
-
             if (currentIndex < total - Math.floor(visibleCount)) {
                 currentIndex++;
-                updateCarousel();
+            } else {
+                currentIndex = 0; // Loop back
             }
+            updateCarousel();
+        }
+
+        nextBtn.addEventListener('click', () => {
+            moveNext();
+            resetAutoPlay();
         });
 
         prevBtn.addEventListener('click', () => {
             if (currentIndex > 0) {
                 currentIndex--;
-                updateCarousel();
+            } else {
+                const visibleCount = getVisibleCount();
+                const total = track.children.length;
+                if (total > 0) {
+                    currentIndex = total - Math.floor(visibleCount); // Loop to end
+                }
             }
+            updateCarousel();
+            resetAutoPlay();
         });
+
+        // Autoplay Logic
+        function startAutoPlay() {
+            if (config.autoPlaySpeed > 0) {
+                autoPlayInterval = setInterval(moveNext, config.autoPlaySpeed);
+            }
+        }
+
+        function resetAutoPlay() {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+                startAutoPlay();
+            }
+        }
 
         window.addEventListener('resize', updateCarousel);
 
         // Initial Render
         renderItems();
+        startAutoPlay();
     }
 
     // Initialize Gallery (2 items)
@@ -400,7 +420,8 @@ document.addEventListener('DOMContentLoaded', () => {
         folderPath: 'images/galeri_anasayfa/',
         itemsToShow: 3,
         itemsToShowMobile: 1, // Show 1 item on mobile
-        partialVisible: false
+        partialVisible: false,
+        autoPlaySpeed: 2000 // 2 seconds auto-slide
     });
 
     // Force Video Autoplay (Mobile/Low Power Mode Fix)
