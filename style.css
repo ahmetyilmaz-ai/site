@@ -950,12 +950,19 @@ footer {
 
 @media (max-width: 768px) {
     .gallery-carousel {
-        padding: 20px 30px;
+        padding: 20px 0px;
+    }
+
+    #homepage-gallery {
+        margin-left: -20px;
+        margin-right: -20px;
+        width: calc(100% + 40px);
     }
 
     #homepage-gallery .carousel-slide img {
         height: 300px;
         /* Reduced specific height for mobile */
+        border-radius: 0;
     }
 
     .carousel-slide img {
@@ -996,6 +1003,7 @@ footer {
         font-size: 0.8rem;
         /* Smaller desc */
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         /* Limit lines */
         margin-bottom: 10px;
     }
