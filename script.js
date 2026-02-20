@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         itemsToShow: 3,
         itemsToShowMobile: 1, // Show 1 item on mobile
         partialVisible: false,
-        autoPlaySpeed: 5000 // 5 seconds auto-slide
+        autoPlaySpeed: 3000 // 5 seconds auto-slide
     });
 
     // Force Video Autoplay (Mobile/Low Power Mode Fix)
