@@ -803,6 +803,10 @@ footer {
     color: var(--text-main);
 }
 
+.campaigns .container {
+    max-width: 1400px;
+}
+
 .campaign-card {
     background: #ffffff;
     padding: 40px;
@@ -844,7 +848,7 @@ footer {
     position: relative;
     overflow: hidden;
     width: 100%;
-    padding: 20px 50px;
+    padding: 20px 30px;
     /* Space for arrows and potential hover effects */
 }
 
