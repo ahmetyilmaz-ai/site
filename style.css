@@ -867,7 +867,9 @@ footer {
 
 .carousel-slide {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 0 15px;
+    /* Use padding instead of margin to prevent overflow */
+    margin: 0;
     flex-shrink: 0;
     /* Important: prevents shrinking */
     transition: opacity 0.5s ease, transform 0.5s ease;

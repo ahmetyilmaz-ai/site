@@ -180,7 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     img.alt = `Galeri Görseli ${i}`;
 
                     div.appendChild(img);
-                    container.appendChild(div);
+
+                    // Insert in order
+                    div.dataset.index = i;
+                    const existing = Array.from(container.children);
+                    const nextNode = existing.find(node => parseInt(node.dataset.index) > i);
+                    container.insertBefore(div, nextNode);
                 };
 
                 tempImg.onerror = function () {
@@ -418,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
         containerId: 'homepage-gallery',
         isDynamic: true,
         folderPath: 'images/galeri_anasayfa/',
-        itemsToShow: 3,
+        itemsToShow: 2, // Changed to show 2 items as requested
         itemsToShowMobile: 1, // Show 1 item on mobile
         partialVisible: false,
         autoPlaySpeed: 5000 // 5 seconds auto-slide
