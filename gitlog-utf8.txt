@@ -1,0 +1,10 @@
+9effa85 Apply marquee effect only to the favorites section
+e225c61 Update homepage gallery to show 2 items, adjust spacing and gap padding
+422f77f Fix gallery gap and change to show 2 items
+d73942b Favoriler bölümündeki ürünlerin sırası güncellendi (ilk 6 dürüm, sonraki 6 porsiyon)
+d89af47 Add padding between gallery button and campaigns section
+44d6eae Update gallery mobile layout and add prices to favorites
+eb9a6a6 style: remove padding from gallery carousels
+1c6dcd2 feat: increase carousel autoplay to 5s
+81bb6c3 style: increase homepage gallery width
+3cd36e2 feat: increase carousel autoplay to 3s
