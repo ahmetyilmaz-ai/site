@@ -320,14 +320,16 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 // Static or already loaded
                 carouselItems.forEach(item => {
-                    // Ensure item has slide class
-                    if (!item.classList.contains('carousel-slide')) {
-                        item.classList.add('carousel-slide');
-                    }
-                    track.appendChild(item);
+                    // Create a slide wrapper just like dynamic items
+                    const slideWrapper = document.createElement('div');
+                    slideWrapper.className = 'carousel-slide';
 
-                    // Reset or set styles if needed
-                    item.style.width = ''; // Let updateCarousel handle it
+                    // Reset or set styles if needed for the original item
+                    item.style.width = '100%';
+                    item.style.margin = '0'; // Prevent double margins
+
+                    slideWrapper.appendChild(item);
+                    track.appendChild(slideWrapper);
                 });
             }
             updateCarousel();
