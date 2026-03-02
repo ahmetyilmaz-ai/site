@@ -449,13 +449,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Initialize Favorites (3 items)
+    // Initialize Favorites Carousel with auto-play
     createCarousel({
         containerId: 'favorites-carousel',
         isDynamic: false,
         itemsToShow: 3,
+        itemsToShowMobile: 1,
         partialVisible: false,
-        disableOnMobile: true // Custom option to kill carousel on mobile
+        autoPlaySpeed: 5000 // 5 seconds auto-slide like homepage gallery
     });
 
 
