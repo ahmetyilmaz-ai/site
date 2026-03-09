@@ -458,6 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
         itemsToShow: 3,
         itemsToShowMobile: 1,
         partialVisible: false,
+        disableOnMobile: true,
         autoPlaySpeed: 5000 // 5 seconds auto-slide like homepage gallery
     });
 

@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RE-MO DÜRÜM - Lezzetin Adresi</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=11">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/img/logo_eski.png" alt="RE-MO DÜRÜM" class="navbar-logo"
+                    onerror="if(this.src.endsWith('png'))this.src='logo.jpg';else if(this.src.endsWith('jpg'))this.src='logo.jpeg';">
+                <span class="logo-text">RE-MO DÜRÜM</span>
+            </a>
+            <div class="nav-extras">
+                <input type="text" placeholder="Ara..." class="nav-search">
+                <div class="nav-phone">
+                    <span>Sipariş Hattı:</span>
+                    <a href="tel:02243670016">0224 367 00 16</a>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span>&#9776;</span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="active">Ana Sayfa</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)">Menü &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="menu.html">Porsiyonlar</a>
+                        <a href="menu.html">Dürümler</a>
+                        <a href="menu.html">İçecekler</a>
+                        <a href="menu.html">Mezeler</a>
+                    </div>
+                </li>
+                <li><a href="galeri.html">Galeri</a></li>
+                <li><a href="#contact">İletişim</a></li>
+                <li><a href="#about" class="btn-nav">Hakkımızda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video" poster="images/galeri_anasayfa/1.jpg">
+            <!-- Using a standard sample video for testing. -->
+            <!-- To use your own video:
+                 1. Save your video as 'video.mp4' in this folder.
+                 2. Change the src below to 'video.mp4'. -->
+            <source src="assets/video/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content container">
+            <h1>Lezzetin Gerçek Adresi</h1>
+            <p>En taze malzemelerle hazırlanan dürümler, porsiyonlar ve mezeler sizi bekliyor.</p>
+            <a href="menu.html" class="btn btn-primary">Menüyü İncele</a>
+        </div>
+    </section>
+
+    <!-- Favorites Section (formerly Categories) -->
+    <section id="menu" class="categories">
+        <div class="container">
+            <h2 class="section-title">Favoriler</h2>
+            <div class="gallery-carousel" id="favorites-carousel">
+                <!-- 1. Adana Dürüm (Original) -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="assets/img/urun_fotograflari/durumler/durum-1.jpeg" alt="Adana Dürüm">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Adana Dürüm</h3>
+                        <p class="card-desc">Zırhla çekilmiş kıymanın ateşle dansı.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">220 ₺</div>
+                        <a href="menu.html?search=Adana Dürüm" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 2. Urfa Dürüm (Original) -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="assets/img/urun_fotograflari/durumler/durum-2.jpeg" alt="Urfa Dürüm">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Urfa Dürüm</h3>
+                        <p class="card-desc">Acısız, sade ve doyurucu lezzet.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">220 ₺</div>
+                        <a href="menu.html?search=Urfa Dürüm" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 3. Ciğer Şiş (Original) -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="assets/img/urun_fotograflari/durumler/durum-3.jpeg" alt="Ciğer Dürüm">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Ciğer Şiş</h3>
+                        <p class="card-desc">Lokum gibi kuzu ciğeri, özel baharatlarla.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">240 ₺</div>
+                        <a href="menu.html?search=Ciğer Şiş" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 4. Tavuk Şiş (Original) -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="assets/img/urun_fotograflari/durumler/durum-4.jpeg" alt="Tavuk Şiş">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Tavuk Şiş</h3>
+                        <p class="card-desc">Özel marine edilmiş yumuşacık tavuk.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">180 ₺</div>
+                        <a href="menu.html?search=Tavuk Şiş" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 5. Yürek Dürüm -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="assets/img/urun_fotograflari/durumler/durum-5.jpeg" alt="Yürek Dürüm">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Yürek Dürüm</h3>
+                        <p class="card-desc">Özel baharatlarla harmanlanmış yürek dürüm.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">160 ₺</div>
+                        <a href="menu.html?search=Yürek Dürüm" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 6. Atom Dürüm -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Atom Dürüm">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Atom Dürüm</h3>
+                        <p class="card-desc">Bol acılı ve doyurucu özel lezzet.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">200 ₺</div>
+                        <a href="menu.html?search=Atom Dürüm" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 7. Kuzu Şiş Porsiyon -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Kuzu Şiş Porsiyon">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Kuzu Şiş Porsiyon</h3>
+                        <p class="card-desc">Tabakta servis edilen enfes Kuzu Şiş lezzeti.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">320 ₺</div>
+                        <a href="menu.html?search=Kuzu Şiş Porsiyon" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 8. Tavuk Şiş Porsiyon -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="assets/img/urun_fotograflari/porsiyonlar/tavuk-sis-porsiyon.jpeg" alt="Tavuk Şiş Porsiyon">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Tavuk Şiş Porsiyon</h3>
+                        <p class="card-desc">Pilav, patates kızartması ve yeşillik ile.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">280 ₺</div>
+                        <a href="menu.html?search=Tavuk Şiş Porsiyon" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 9. Kuzu Ciğer Şiş Porsiyon -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="assets/img/urun_fotograflari/porsiyonlar/kuzu-ciger-sis-porsiyon.jpeg" alt="Kuzu Ciğer Şiş Porsiyon">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Kuzu Ciğer Şiş Porsiyon</h3>
+                        <p class="card-desc">Sumaklı soğan, lavaş ve közlenmiş sebzeler.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">340 ₺</div>
+                        <a href="menu.html?search=Kuzu Ciğer Şiş Porsiyon" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 10. Yürek Porsiyon -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76690b609aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Yürek Porsiyon">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Yürek Porsiyon</h3>
+                        <p class="card-desc">Taze yürek, soğan ve yeşillik ile servis edilir.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">320 ₺</div>
+                        <a href="menu.html?search=Yürek Porsiyon" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 11. Kanat Porsiyon -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="assets/img/urun_fotograflari/porsiyonlar/kanat-porsiyon.jpeg" alt="Kanat Porsiyon">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Kanat Porsiyon</h3>
+                        <p class="card-desc">Nar gibi kızarmış kanat, pilav ve salata.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">300 ₺</div>
+                        <a href="menu.html?search=Kanat Porsiyon" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+
+                <!-- 12. Kebap Porsiyon -->
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="assets/img/urun_fotograflari/porsiyonlar/kebap-porsiyon.jpeg" alt="Kebap Porsiyon">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Kebap Porsiyon</h3>
+                        <p class="card-desc">Özel kebap, pilav ve közlenmiş biber ile.</p>
+                        <div class="item-price" style="text-align: center; margin-bottom: 10px;">320 ₺</div>
+                        <a href="menu.html?search=Kebap Porsiyon" class="btn btn-outline">İncele</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaigns & Gallery Section -->
+    <section class="campaigns">
+        <div class="container">
+            <h2 class="section-title">Galerimiz</h2>
+            <div class="gallery-carousel" id="homepage-gallery">
+                <!-- Gallery items will be populated by script.js -->
+            </div>
+
+            <div class="text-center mt-4" style="margin-bottom: 3rem;">
+                <a href="galeri.html" class="btn btn-outline">Tüm Galeriyi Gör</a>
+            </div>
+
+            <!-- Existing Campaign Info kept below or integrated -->
+            <div class="campaign-card mt-4">
+                <h3>Fırsatlar</h3>
+                <ul>
+                    <li>🔥 <strong>5 Adana</strong> alana <strong>1 Lt İçecek Hediye</strong></li>
+                    <li>🔥 <strong>6 Tavuk Şiş</strong> alana <strong>1 Lt İçecek Hediye</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="assets/img/hakkimizda.png" alt="Hakkımızda">
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 1.5rem;">Hakkımızda</h2>
+                    <h3 style="color: #333; margin-bottom: 1rem;">Bursa'nın En Lezzetli Durağı</h3>
+                    <p style="color: #666; font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        RE-MO Dürüm olarak, yılların verdiği tecrübe ve lezzet tutkusuyla Bursa'da hizmet veriyoruz.
+                        En taze malzemeleri, geleneksel tariflerle buluşturarak damağınızda unutulmaz bir tat bırakmayı
+                        hedefliyoruz.
+                    </p>
+                    <p style="color: #666; font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                        Müşteri memnuniyetini her zaman ön planda tutan ekibimizle, sıcak ve samimi bir ortamda
+                        sizleri ağırlamaktan mutluluk duyuyoruz. İster dürüm, ister porsiyon, ister meze... Her
+                        lokmada kaliteyi hissedeceksiniz.
+                    </p>
+                    <a href="menu.html" class="btn btn-primary">Menu'ye Göz At</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">İletişim</h2>
+            <p style="margin-bottom: 30px; color: var(--text-muted);">Sorularınız için bizimle iletişime geçebilirsiniz
+            </p>
+
+            <div class="contact-container">
+                <!-- Left Column: Info -->
+                <div class="contact-left">
+                    <div class="contact-row">
+                        <div class="icon-box">📞</div>
+                        <div class="info-box">
+                            <h3>Telefon</h3>
+                            <a href="tel:02243670016">0224 367 00 16</a>
+                            <a href="tel:05446379726">0544 637 97 26</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-row">
+                        <div class="icon-box">📍</div>
+                        <div class="info-box">
+                            <h3>Adres</h3>
+                            <p>Mimarsinan, Emniyet Cd. No:26 D:30, 16310 Yıldırım/Bursa</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-row">
+                        <div class="icon-box">🕒</div>
+                        <div class="info-box">
+                            <h3>Çalışma Saatleri</h3>
+                            <p>Pazartesi - Pazar</p>
+                            <p>11:00 - 23:00</p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/905446379726" target="_blank" class="whatsapp-btn">
+                        <span>WhatsApp ile İletişime Geç</span>
+                    </a>
+
+                    <a href="https://www.instagram.com/remodurum" target="_blank" class="instagram-btn">
+                        <span>📷 @remodurum Instagram'da Takip Et</span>
+                    </a>
+                </div>
+
+                <!-- Right Column: Map -->
+                <div class="contact-right">
+                    <div class="map-container">
+                        <iframe width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3047.8!2d29.1!3d40.18!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ca3e0000000001%3A0x0!2sMimarsinan%2C%20Emniyet%20Cd.%20No%3A26%20D%3A30%2C%2016310%20Y%C4%B1ld%C4%B1r%C4%B1m%2FBursa!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 RE-MO DÜRÜM. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
